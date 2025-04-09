@@ -19,8 +19,8 @@ kind: Alert
 metadata:
   name: flux-failed-execution-rocketchat
 spec:
-  inclusionList:
-    - ".*failed.*"
+  # inclusionList:
+  #   - ".*failed.*"
   providerRef:
     name: rocketchat
   eventSeverity: error

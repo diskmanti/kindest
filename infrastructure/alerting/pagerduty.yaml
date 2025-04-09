@@ -13,8 +13,8 @@ kind: Alert
 metadata:
   name: my-service-pagerduty
 spec:
-  inclusionList:
-    - ".*failed.*"
+  # inclusionList:
+  #   - ".*failed.*"
   providerRef:
     name: pagerduty
   # Event severity that triggers this alert (e.g. error events from a failed sync).
