@@ -45,19 +45,19 @@ spec:
   prune: true
   wait: true
   timeout: 5m
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1
-# kind: Kustomization
-# metadata:
-#   name: headlamp
-#   namespace: flux-system
-# spec:
-#   interval: 10m
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-system
-#   serviceAccountName: kustomize-controller
-#   path: ./infrastructure/headlamp
-#   prune: true
-#   wait: true
-#   timeout: 5m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: headlamp
+  namespace: flux-system
+spec:
+  interval: 10m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  serviceAccountName: kustomize-controller
+  path: ./infrastructure/headlamp
+  prune: true
+  wait: true
+  timeout: 5m
