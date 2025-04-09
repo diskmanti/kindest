@@ -4,6 +4,6 @@ metadata:
   name: base-team
   namespace: apps
 spec:
-  path: ./main
+  path: ../main
   interval: 30s
   prune: true
