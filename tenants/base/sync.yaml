@@ -1,0 +1,23 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: base-team
+  namespace: apps
+spec:
+  interval: 1m
+  url: https://github.com/diskmanti/kindest
+  ref:
+    branch: base-team
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: base-team
+  namespace: apps
+spec:
+  serviceAccountName: base-team
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: base-team
+  prune: true
