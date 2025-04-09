@@ -1,0 +1,47 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: frontend-team
+  namespace: green
+spec:
+  interval: 1m
+  url: https://github.com/diskmanti/frontend
+  ref:
+    branch: main    
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: frontend-team
+  namespace: green
+spec:
+  serviceAccountName: frontend-team
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: frontend-team
+  prune: true
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: frontend-team
+  namespace: blue
+spec:
+  interval: 1m
+  url: https://github.com/diskmanti/frontend
+  ref:
+    branch: main    
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: frontend-team
+  namespace: blue
+spec:
+  serviceAccountName: frontend-team
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: frontend-team
+  prune: true

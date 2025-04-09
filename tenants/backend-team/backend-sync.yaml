@@ -1,0 +1,23 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: backend-team
+  namespace: red
+spec:
+  interval: 1m
+  url: https://github.com/diskmanti/backend
+  ref:
+    branch: main
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: backend-team
+  namespace: red
+spec:
+  serviceAccountName: backend-team
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: backend-team
+  prune: true
