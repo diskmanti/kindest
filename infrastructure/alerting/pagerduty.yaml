@@ -1,0 +1,30 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: pagerduty
+spec:
+  type: pagerduty
+  address: https://events.pagerduty.com
+  channel: <integrationKey>
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: my-service-pagerduty
+spec:
+  providerRef:
+    name: pagerduty
+  # Event severity that triggers this alert (e.g. error events from a failed sync).
+  eventSeverity: error
+  # Optionally, filter by resource kinds if you wish to only alert on specific Flux resources.
+  eventSources:
+    - kind: GitRepository
+    - kind: HelmRelease
+    - kind: Kustomization
+  template:
+    subject: "Flux Execution Failure Detected!"
+    body: |
+      Flux encountered an error with the resource '{{ .Event.involvedObject.name }}'
+      in namespace '{{ .Event.involvedObject.namespace }}'.
+      Reason: {{ .Event.reason }}
+      Message: {{ .Event.message }}

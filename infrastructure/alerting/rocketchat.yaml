@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rocket-webhook
+data:
+  token: c2VjcmV0
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: rocket
+spec:
+  type: rocket
+  secretRef:
+    name: rocket-webhook
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: flux-failed-execution-rocketchat
+spec:
+  providerRef:
+    name: rocketchat
+  eventSeverity: error
+  eventSources:
+    - kind: GitRepository
+    - kind: HelmRelease
+    - kind: Kustomization
+  template:
+    subject: "Flux Execution Failure Detected!"
+    body: |
+      Flux encountered an error with the resource '{{ .Event.involvedObject.name }}'
+      in namespace '{{ .Event.involvedObject.namespace }}'.
+      Reason: {{ .Event.reason }}
+      Message: {{ .Event.message }}
