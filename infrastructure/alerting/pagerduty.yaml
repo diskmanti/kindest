@@ -19,12 +19,11 @@ spec:
   # Optionally, filter by resource kinds if you wish to only alert on specific Flux resources.
   eventSources:
     - kind: GitRepository
+      name: '*'
+      namespace: '*'
     - kind: HelmRelease
+      name: '*'
+      namespace: '*'
     - kind: Kustomization
-  template:
-    subject: "Flux Execution Failure Detected!"
-    body: |
-      Flux encountered an error with the resource '{{ .Event.involvedObject.name }}'
-      in namespace '{{ .Event.involvedObject.namespace }}'.
-      Reason: {{ .Event.reason }}
-      Message: {{ .Event.message }}
+      name: '*'
+      namespace: '*'
