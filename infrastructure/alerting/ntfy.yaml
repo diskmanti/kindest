@@ -1,24 +1,24 @@
+---
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Provider
 metadata:
-  name: pagerduty
+  name: ntfy
+  namespace: flux-system
 spec:
-  type: pagerduty
-  address: https://events.pagerduty.com
-  channel: fsdfsgsdgdf
-
+  type: generic
+  address: https://ntfy.sh/kindest
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
-  name: my-service-pagerduty
+  name: my-ntfy
 spec:
-  inclusionList:
-    - ".*failed.*"
+  # inclusionList:
+  #   - ".*failed.*"
   providerRef:
-    name: pagerduty
+    name: ntfy
   # Event severity that triggers this alert (e.g. error events from a failed sync).
-  eventSeverity: error
+  # eventSeverity: error
   # Optionally, filter by resource kinds if you wish to only alert on specific Flux resources.
   eventSources:
     - kind: GitRepository

@@ -14,7 +14,7 @@ spec:
   secretRef:
     name: rocket-webhook
 ---
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
   name: flux-failed-execution-rocketchat
