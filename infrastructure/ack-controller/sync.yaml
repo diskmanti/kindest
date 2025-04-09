@@ -22,5 +22,5 @@ spec:
       chart: kafka-controller
       reconcileStrategy: ChartVersion
       sourceRef:
-        kind: Bucket
+        kind: HelmRepository
         name: kafka-controller
