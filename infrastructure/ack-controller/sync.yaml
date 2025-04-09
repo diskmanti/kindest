@@ -1,0 +1,26 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: kafka-controller
+  namespace: flux-system 
+spec:
+  interval: 5m0s
+  url: oci://public.ecr.aws/aws-controllers-k8s/kafka-controller
+  ref:
+    tag: latest
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kafka-controller
+  namespace: flux-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kafka-controller
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: Bucket
+        name: kafka-controller
