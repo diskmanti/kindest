@@ -6,9 +6,9 @@ metadata:
   namespace: flux-system 
 spec:
   interval: 5m0s
-  url: oci://public.ecr.aws/aws-controllers-k8s
-  # ref:
-  #   # tag: 1.0.9
+  url: oci://public.ecr.aws/aws-controllers-k8s/kafka-chart
+  ref:
+    tag: 1.0.9
   #   semver: ">1.0.0"
 # ---
 # apiVersion: helm.toolkit.fluxcd.io/v2
