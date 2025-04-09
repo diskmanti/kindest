@@ -17,6 +17,7 @@ metadata:
   name: kafka-controller
   namespace: flux-system
 spec:
+  serviceAccountName: helm-controller
   interval: 5m
   chartRef:
     kind: OCIRepository
