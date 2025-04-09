@@ -1,9 +1,0 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: base-team
-  namespace: apps
-spec:
-  path: ../main
-  interval: 30s
-  prune: true
