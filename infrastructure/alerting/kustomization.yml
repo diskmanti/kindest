@@ -4,4 +4,3 @@ namespace: flux-system
 resources:
 - pagerduty.yaml
 - rocketchat.yaml
-- ntfy.yaml
