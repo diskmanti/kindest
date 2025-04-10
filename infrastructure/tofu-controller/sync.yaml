@@ -33,14 +33,14 @@ spec:
     remediation:
       retries: -1
   values:
-    replicaCount: 3
+    replicaCount: 1
     concurrency: 24
     resources:
       limits:
-        cpu: 1000m
-        memory: 2Gi
+        cpu: 100m
+        memory: 1Gi
       requests:
-        cpu: 400m
+        cpu: 100m
         memory: 64Mi
     caCertValidityDuration: 24h
     certRotationCheckFrequency: 30m
