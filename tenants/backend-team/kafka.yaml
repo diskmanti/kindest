@@ -27,21 +27,21 @@ spec:
     - host: '*'
       operation: Read
       resource:
-        name: '*'
+        name: 'my-topic'
         patternType: literal
         type: topic
       type: allow
     - host: '*'
       operation: Write
       resource:
-        name: '*'
+        name: 'my-topic'
         patternType: literal
         type: topic
       type: allow
     - host: '*'
       operation: Describe
       resource:
-        name: '*'
+        name: 'my-topic'
         patternType: literal
         type: topic
       type: allow
