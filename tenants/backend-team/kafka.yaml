@@ -1,0 +1,48 @@
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  labels:
+    strimzi.io/cluster: dev-msk
+  name: some-topic
+  namespace: dev
+spec:
+  config:
+    retention.ms: 604800000
+    segment.bytes: 1073741824
+  partitions: 1
+  replicas: 3
+---
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaUser
+metadata:
+  labels:
+    strimzi.io/cluster: dev-msk
+  name: kafka.user.kafka-msk-toolbox
+  namespace: dev
+spec:
+  authentication:
+    type: tls
+  authorization:
+    acls:
+    - host: '*'
+      operation: Read
+      resource:
+        name: '*'
+        patternType: literal
+        type: topic
+      type: allow
+    - host: '*'
+      operation: Write
+      resource:
+        name: '*'
+        patternType: literal
+        type: topic
+      type: allow
+    - host: '*'
+      operation: Describe
+      resource:
+        name: '*'
+        patternType: literal
+        type: topic
+      type: allow
+    type: simple
