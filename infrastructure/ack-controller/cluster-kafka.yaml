@@ -1,0 +1,21 @@
+apiVersion: kafka.services.k8s.aws/v1alpha1
+kind: Cluster
+metadata:
+  name: "kafka"
+  annotations: {}
+  namespace: flux-system
+spec:
+  brokerNodeGroupInfo: {}
+  kafkaVersion: ""
+  name: kafka
+  numberOfBrokerNodes: 1
+  clientAuthentication:
+    sasl:
+      iam:
+        enabled: true        
+    tls:
+      enabled: true
+      certificateAuthorityARNList:
+        - ""
+    unauthenticated:
+      enabled: false
